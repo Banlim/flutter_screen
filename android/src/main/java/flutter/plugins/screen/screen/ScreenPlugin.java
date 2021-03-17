@@ -55,14 +55,18 @@ public class ScreenPlugin implements MethodCallHandler {
         break;
         
       case "enableShowLock":
-        setShowWhenLocked(true);
-        setTurnScreenOn(true);
+        Boolean enabled = call.argument("enabled");
+        if (enabled){
+          setShowWhenLocked(true);
+          setTurnScreenOn(true);
+        }
+        else{
+          setShowWhenLocked(false);
+          setTurnScreenOn(false);
+        }
+        return.success(null);
         break;
-        
-      case "disableShowLock":
-        setShowWhenLocked(false);
-        setTurnScreenOn(false);
-        break;
+       
       default:
         result.notImplemented();
         break;
